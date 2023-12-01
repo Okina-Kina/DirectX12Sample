@@ -1,0 +1,28 @@
+@startuml 
+title 【DirectX 12】コマンドリストとコマンドアロケーターの対応
+
+
+interface ID3D12CommandAllocator{
+    + push_back() : ID3D12GraphicsCommandList
+}
+note left
+ID3D12CommandAllocatorは
+命令セットをStoreするメモリ領域
+end note
+
+interface ID3D12GraphicsCommandList{
+    -- interfaces --
+    + DrawInstanced() : ...
+    + DrawIndexedInstanced() : ...
+    + ClearRenderTargetView() : ...
+    + Close() : ...
+    ...
+}
+note left
+GPUに対する命令セット
+end note
+
+ID3D12CommandAllocator "1" o---> "0..*" ID3D12GraphicsCommandList
+
+
+@enduml
